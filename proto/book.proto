@@ -1,0 +1,55 @@
+syntax ="proto3";
+
+package book;
+
+service BookService {
+    rpc AddBook (BookInput) returns (BookResponse);
+    rpc GetBook (BookId) returns (BookResponse);
+    rpc ListBooks (Empty) returns (BookList);
+    rpc ListAvailableBooks (Empty) returns (BookList);
+    rpc UpdateBook (UpdateBookInput) returns (BookResponse);
+    rpc RemoveBook (BookId) returns (OperationResponse);
+    rpc ReserveBook (BookId) returns (OperationResponse);
+    rpc ReleaseBook (BookId) returns (OperationResponse);
+}
+
+message Empty {}
+
+message BookId {
+    int32 id=1;
+}
+
+message BookInput{
+    string title =1;
+    string author =2;
+    string isbn =3;
+    int32 totalCopies =4;
+}
+
+message UpdateBookInput{
+    int32 id=1;
+    string title =2;
+    string author =3;
+    string isbn =4;
+    int32 totalCopies =5;
+}
+
+message BookResponse {
+    int32 id = 1;
+    string title = 2;
+    string author = 3;
+    string isbn = 4;
+    int32 totalCopies = 5;
+    int32 availableCopies = 6;
+    string createdAt = 7;
+    string updatedAt = 8;
+}
+
+message BookList {
+    repeated BookResponse books =1;
+}
+
+message OperationResponse {
+    bool success =1;
+    string message =2;
+}

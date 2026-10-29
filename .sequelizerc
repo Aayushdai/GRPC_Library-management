@@ -1,0 +1,10 @@
+const path = require("path");
+
+const root = __dirname;
+
+module.exports = {
+    config: path.join(root, "services", "book-service", "config", "config.js"),
+    "models-path": path.join(root, "services", "book-service", "models"),
+    "seeders-path": path.join(root, "services", "book-service", "seeders"),
+    "migrations-path": path.join(root, "services", "book-service", "migrations")
+};
